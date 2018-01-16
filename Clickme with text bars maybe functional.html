@@ -1,0 +1,32 @@
+<html>
+		<head>
+				<meta charset="utf-8"/>
+
+					<script>
+				//Armory lookup script
+				function  importData(){
+				var region = document.getElementById('region').value
+				var realm = document.getElementById('realm').value
+				var name = document.getElementById('name').value
+				var url1 = 'http://moox.dk/~woliance/index.php?'
+				let url = url1.concat('region=',region,'&realm=',realm,'&name=',name);
+				fetch(url)
+				.then(res => res.json())
+				.then((out) => {
+				console.log(out);
+					})
+				.catch(err => { throw err });
+				}
+					</script>
+						
+			</head>
+			<body>
+		<input type="text" id="region" name="region" value="Region" selectBoxOptions="EU;US">
+		<input type="text" id="realm" name="realm" value="Realm">
+		<input type="text" id="name" name="name" value="Name">
+
+		
+		<!--Create a button to click when you want to update armory-->
+		<input id="clickMe" type="button" value="Import" onclick="importData();" />
+		
+	</body>
