@@ -1,32 +1,55 @@
 <html>
-		<head>
-				<meta charset="utf-8"/>
+        <head>
+                <meta charset="utf-8"/>
 
-					<script>
-				//Armory lookup script
-				function  importData(){
+                    <script>
+				//Controller
+				function controller(){
+				var stats = importData()
+				
+				}
+                //Armory lookup script
+                function  importData(){
 				var region = document.getElementById('region').value
 				var realm = document.getElementById('realm').value
 				var name = document.getElementById('name').value
 				var url1 = 'http://moox.dk/~woliance/index.php?'
 				let url = url1.concat('region=',region,'&realm=',realm,'&name=',name);
-				fetch(url)
+                fetch(url)
 				.then(res => res.json())
 				.then((out) => {
-				console.log(out);
-					})
-				.catch(err => { throw err });
-				}
-					</script>
-						
-			</head>
-			<body>
-		<input type="text" id="region" name="region" value="Region" selectBoxOptions="EU;US">
-		<input type="text" id="realm" name="realm" value="Realm">
-		<input type="text" id="name" name="name" value="Name">
+				
+                var haste = (out['stats']['hasteRating']);
+					document.getElementById('CharacterHasteRating').innerHTML = haste;
+					document.getElementById('CharacterHasteP').innerHTML = Math.round((haste/375)*100)/100 + '%';
 
+                var crit = (out['stats']['critRating']);
+					document.getElementById('CharacterCritRating').innerHTML = crit;
+					document.getElementById('CharacterCritP').innerHTML = Math.round((crit/400)*100)/100 + '%';
+					return [haste,crit]
+                    })
+					.catch(err => { throw err });
+						}
+
+						</script>
+					
+
+            </head>
+            <body>
+        <input type="text" id="region"																																																																																		 name="region" value="Region">
+        <input type="text" id="realm" name="realm" value="Realm">
+        <input type="text" id="name" name="name" value="Name">
+
+
+        <!--Create a button to click when you want to update armory-->
+        <input id="clickMe" type="button" value="Import" onclick="controller();" />
+
+        <p>Haste: <span id='CharacterHasteRating'></span> </p>
+		<p><span id='CharacterHasteP'></span></p>
+        <p>Crit:  <span id='CharacterCritRating'></span></p>
+		<p><span id='CharacterCritP'></span></p>
 		
-		<!--Create a button to click when you want to update armory-->
-		<input id="clickMe" type="button" value="Import" onclick="importData();" />
 		
-	</body>
+
+
+</body>	
