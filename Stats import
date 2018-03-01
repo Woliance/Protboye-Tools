@@ -13,7 +13,7 @@
 				var region = document.getElementById('region').value
 				var realm = document.getElementById('realm').value
 				var name = document.getElementById('name').value
-				var url1 = 'http://moox.dk/~woliance/index.php?'
+				var url1 = 'https://moox.dk/~woliance/index.php?'
 				let url = url1.concat('region=',region,'&realm=',realm,'&name=',name);
                 fetch(url)
 				.then(res => res.json())
