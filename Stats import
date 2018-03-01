@@ -38,7 +38,7 @@
             <body>
 			<select id="region" name="region">
 				<option value="EU">EU</option>
-				<option value="NA">NA</option>
+				<option value="US">US</option>
 				</select>
         <input type="text" id="realm" name="realm" value="Realm">
         <input type="text" id="name" name="name" value="Name">
